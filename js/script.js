@@ -1,17 +1,5 @@
-window.addEventListener('DOMContentLoaded', () => {
-	const tabs = require('./modules/tabs'),
-			calc = require('./modules/calc'),
-			cards = require('./modules/cards'),
-			forms = require('./modules/forms'),
-			modal = require('./modules/modal'),
-			slider = require('./modules/slider'),
-			timer = require('./modules/timer');
+import {one, two} from './main.js';
+import sayHi from './main.js';
 
-	tabs();
-	calc();
-	cards();
-	forms();
-	modal();
-	slider();
-	timer();
-});
+console.log(`${one} and ${two}`);
+sayHi();
