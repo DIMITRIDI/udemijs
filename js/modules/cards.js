@@ -1,3 +1,5 @@
+import {getResource} from '../services/services';
+
 function cards() {
 	// Используем классы для карточек
 
@@ -22,8 +24,8 @@ function cards() {
 			const element = document.createElement('div');
 
 			if (this.classes.length === 0) {
-				this.element = 'menu__item';
-				element.classList.add(this.element);
+				this.classes = "menu__item";
+				element.classList.add(this.classes);
 			} else {
 				this.classes.forEach(className => element.classList.add(className));
 			}
@@ -42,22 +44,12 @@ function cards() {
 		}
 	}
 
-	const getResource = async (url) => {
-		const res = await fetch(url);
-
-		if (!res.ok) {
-			throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-		}
-
-		return await res.json();
-	};
-
-	// getResource('http://localhost:3000/menu')
-		// .then(data => {
-			// data.forEach(({img, altimg, title, descr, price}) => {
-				// new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
-			// });
-		// });
+	getResource('http://localhost:3000/menu')
+		.then(data => {
+			data.forEach(({img, altimg, title, descr, price}) => {
+				new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
+			});
+		});
 
 		// getResource('http://localhost:3000/menu')
 			// .then(data => createCard(data));
@@ -83,12 +75,12 @@ function cards() {
 			// });
 		// }
 
-	getResource('http://localhost:3000/menu')
-		.then(data => {
-			data.data.forEach(({img, altimg, title, descr, price}) => {
-				new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
-			});
-		});
+	// getResource('http://localhost:3000/menu')
+		// .then(data => {
+			// data.data.forEach(({img, altimg, title, descr, price}) => {
+				// new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
+			// });
+		// });
 }
 
-module.exports = cards;
+export default cards;
